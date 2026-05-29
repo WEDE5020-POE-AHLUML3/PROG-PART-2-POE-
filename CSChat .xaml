@@ -1,0 +1,207 @@
+﻿<Window x:Class="cyberg_guard_assistant_chat_app.CSChat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CSChat" Height="650" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Side Menu -->
+        <Grid x:Name="SideMenu"
+              Background="#1a7abf"
+              Width="250"
+              Visibility="Collapsed"
+              Grid.RowSpan="2">
+            <StackPanel Margin="10">
+                <TextBlock Text="Saved Chats" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,10,0,10"/>
+                <ListBox x:Name="SavedChatsList" Foreground="White" Background="Transparent" BorderThickness="0"/>
+
+                <Button Content="Start New Chat"
+                        Click="NewChat_Click"
+                        Background="#0f5a8f"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Padding="8,6"
+                        Margin="0,10,0,10"
+                        Cursor="Hand"/>
+
+                <TextBlock Text="Suggested Topics" Foreground="White" FontSize="15"
+                           FontWeight="Bold" Margin="0,10,0,8"/>
+
+                <Button Content="  Passwords"
+                        Click="TopicButton_Click" Tag="Tell me about password safety"
+                        Background="#0f5a8f" Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Padding="8,6" Margin="0,3" BorderThickness="0" Cursor="Hand"/>
+
+                <Button Content="  Phishing"
+                        Click="TopicButton_Click" Tag="What is phishing and how do I avoid it"
+                        Background="#0f5a8f" Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Padding="8,6" Margin="0,3" BorderThickness="0" Cursor="Hand"/>
+
+                <Button Content="  Privacy"
+                        Click="TopicButton_Click" Tag="How do I protect my privacy online"
+                        Background="#0f5a8f" Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Padding="8,6" Margin="0,3" BorderThickness="0" Cursor="Hand"/>
+
+                <Button Content="  Scams"
+                        Click="TopicButton_Click" Tag="How do I recognize and avoid scams"
+                        Background="#0f5a8f" Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Padding="8,6" Margin="0,3" BorderThickness="0" Cursor="Hand"/>
+
+                <Button Content="  Malware"
+                        Click="TopicButton_Click" Tag="Tell me about malware and how to stay safe"
+                        Background="#0f5a8f" Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Padding="8,6" Margin="0,3" BorderThickness="0" Cursor="Hand"/>
+
+                <Button Content="  Wi-Fi Safety"
+                        Click="TopicButton_Click" Tag="How do I stay safe on public Wi-Fi"
+                        Background="#0f5a8f" Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Padding="8,6" Margin="0,3" BorderThickness="0" Cursor="Hand"/>
+
+                <Button Content="  Two-Factor Auth"
+                        Click="TopicButton_Click" Tag="What is two factor authentication and why do I need it"
+                        Background="#0f5a8f" Foreground="White"
+                        HorizontalContentAlignment="Left"
+                        Padding="8,6" Margin="0,3" BorderThickness="0" Cursor="Hand"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Hamburger Button -->
+        <Button x:Name="MenuButton"
+                Width="40" Height="40"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="ToggleMenu_Click"
+                Grid.Column="1"
+                Grid.Row="0"
+                Panel.ZIndex="10"
+                Background="SkyBlue"
+                BorderThickness="0"
+                Cursor="Hand"
+                ToolTip="Open Menu">
+            <StackPanel Orientation="Vertical" Margin="4">
+                <Rectangle Height="4" Fill="White" Margin="0,3"/>
+                <Rectangle Height="4" Fill="White" Margin="0,3"/>
+                <Rectangle Height="4" Fill="White" Margin="0,3"/>
+                <Rectangle Height="4" Fill="White" Margin="0,3"/>
+            </StackPanel>
+        </Button>
+
+        <!-- Chat messages -->
+        <ScrollViewer x:Name="ChatScrollViewer"
+                      Grid.Row="0" Grid.Column="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="0,45,0,0">
+            <StackPanel x:Name="ChatPanel"
+                        Orientation="Vertical"
+                        Margin="10"
+                        VerticalAlignment="Top"/>
+        </ScrollViewer>
+
+        <!-- Typing Indicator -->
+        <StackPanel x:Name="TypingIndicator"
+                    Grid.Row="1" Grid.Column="1"
+                    Orientation="Horizontal"
+                    Visibility="Collapsed"
+                    Margin="10,5,10,0"
+                    VerticalAlignment="Center">
+
+            <Border Width="14" Height="14" CornerRadius="7" Background="SkyBlue" Margin="3,0">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         From="1" To="0.1" Duration="0:0:0.5"
+                                                         AutoReverse="True" BeginTime="0:0:0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <Border Width="14" Height="14" CornerRadius="7" Background="SkyBlue" Margin="3,0">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         From="1" To="0.1" Duration="0:0:0.5"
+                                                         AutoReverse="True" BeginTime="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <Border Width="14" Height="14" CornerRadius="7" Background="SkyBlue" Margin="3,0">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         From="1" To="0.1" Duration="0:0:0.5"
+                                                         AutoReverse="True" BeginTime="0:0:0.4"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+        </StackPanel>
+
+        <!-- Input bubble -->
+        <Border Grid.Row="1" Grid.Column="1"
+                Margin="10"
+                CornerRadius="12"
+                BorderBrush="SkyBlue"
+                BorderThickness="2"
+                Background="White">
+            <DockPanel LastChildFill="True">
+                <Button Content="➤"
+                        FontSize="16"
+                        Width="32" Height="32"
+                        Background="SkyBlue"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Click="SendButton_Click"
+                        Margin="4"
+                        Cursor="Hand"
+                        ToolTip="Send message"
+                        DockPanel.Dock="Right"/>
+                <TextBox x:Name="ChatInput"
+                         TextWrapping="Wrap"
+                         FontSize="16"
+                         Padding="8"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         KeyDown="ChatInput_KeyDown"/>
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</Window>

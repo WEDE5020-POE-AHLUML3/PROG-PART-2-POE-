@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>cyberg_guard_assistant_chat_app</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ChatGPT Image Apr 28, 2026, 01_48_54 PM.png" />
+    <None Remove="Copilot_20260429_102828.png" />
+    <None Remove="Copilot_20260429_102830.png" />
+    <None Remove="Copilot_20260429_104139.png" />
+    <None Remove="Copilot_20260429_104951.png" />
+    <None Remove="Copilot_20260429_111327.png" />
+    <None Remove="Copilot_20260429_111533.png" />
+    <None Remove="Copilot_20260429_113841.png" />
+    <None Remove="Gemini_Generated_Image_1nre9p1nre9p1nre.png" />
+    <None Remove="Gemini_Generated_Image_nnpwgennpwgennpw.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ChatGPT Image Apr 28, 2026, 01_48_54 PM.png" />
+    <Resource Include="Copilot_20260429_102828.png" />
+    <Resource Include="Copilot_20260429_102830.png" />
+    <Resource Include="Copilot_20260429_104139.png" />
+    <Resource Include="Copilot_20260429_104951.png" />
+    <Resource Include="Copilot_20260429_111327.png" />
+    <Resource Include="Copilot_20260429_111533.png" />
+    <Resource Include="Copilot_20260429_113841.png" />
+    <Resource Include="Gemini_Generated_Image_1nre9p1nre9p1nre.png" />
+    <Resource Include="Gemini_Generated_Image_nnpwgennpwgennpw.png" />
+  </ItemGroup>
+
+</Project>
